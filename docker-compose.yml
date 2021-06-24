@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  redis:
+    image: bitnami/redis:6.2.1-debian-10-r38
+    hostname: ${APP_NAME}_redis
+    container_name: ${APP_NAME}_redis
+    ports:
+      - ${REDIS_PORT}:$REDIS_PORT
+    volumes:
+      - redis-volume:/bitnami/redis/data
+    environment:
+      ALLOW_EMPTY_PASSWORD: "yes"
+      # REDIS_DISABLE_COMMANDS: FLUSHDB,FLUSHALL,CONFIG
+      REDIS_AOF_ENABLED: "no"
+
+volumes:
+  redis-volume:
